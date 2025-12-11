@@ -1,0 +1,180 @@
+﻿@model (List<TblNews> slider, List<TblNews> latest, List<TblNews> Politic , List<TblNews>Economy, List<TblNews> mostviewed , List<TblKeyword> tags)
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Slider -->
+<div class="container">
+    <div class="slider-container">
+        <div class="slider"> 
+            @foreach (var i in Model.slider)
+            {
+                <div class="slide active">
+                    <img src="~/images/content/@i.Image" alt="اسلاید @i" class="slide-img">
+                    <div class="slide-content">
+                    <a asp-action="singleNews" asp-route-id="@i.Id">
+                        <span class="slide-category">@i.Category.Name</span>
+                        <h2 class="slide-title">@i.Title</h2>
+                        <p class="slide-desc">@i.Body.Shorten(30)</p>
+                    </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="slider-nav">
+            <span class="slider-dot" data-index="1"></span>
+            <span class="slider-dot" data-index="2"></span>
+            <span class="slider-dot" data-index="3"></span>
+            <span class="slider-dot" data-index="4"></span>
+            <span class="slider-dot" data-index="5"></span>
+        </div>
+
+        <div class="slider-arrows">
+            <div class="slider-arrow slider-prev">&#10094;</div>
+            <div class="slider-arrow slider-next">&#10095;</div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="main-content">
+        <div class="content-left">
+            <!-- Featured News -->
+            <section class="section">
+                <div class="section-header">
+                    <h2 class="section-title">اخبار ویژه</h2>
+                </div>
+
+                <div class="featured-news">
+                    @foreach (var i in Model.mostviewed)
+                    {
+                        @await Component.InvokeAsync("NewsBlock",i);
+                    }  
+                </div>
+            </section>
+
+            <!-- Latest News -->
+            <section class="section">
+                <div class="section-header">
+                    <h2 class="section-title">آخرین اخبار</h2>
+                    <a asp-action="Archive" class="view-all">مشاهده همه</a>
+                </div>
+
+                <div class="latest-news">
+                    @foreach (var i in Model.latest)
+                    {
+                        @await Component.InvokeAsync("NewsBlock", i);
+                    }
+                </div>
+            </section>
+
+            <!-- Politics News -->
+            <section class="section">
+                <div class="section-header">
+                    <h2 class="section-title">اخبار سیاسی</h2>
+                    <a asp-action="Archive" asp-route-category="سیاسی" class="view-all">مشاهده همه</a>
+                </div>
+
+                <div class="grid-news">
+
+                    @foreach (var i in Model.Politic)
+                    {
+                        <article class="news-list-item">
+                            <a asp-action="singleNews" asp-route-id="@i.Id">
+                            <div class="news-list-img">
+                                <img src="~/images/content/@i.Image" alt="خبر">
+                            </div>
+                            <div class="news-list-content">
+                                <h3 class="news-list-title">
+                                        <a asp-action="singleNews" asp-route-id="@i.Id">@i.Title</a>
+                                </h3>
+                                <div class="news-list-meta">
+                                    <span>@i.DatePublished.toShamsi()</span>
+                                </div>
+                            </div>
+                            </a>
+                        </article>
+                    }
+                </div>
+            </section>
+
+            <!-- Economy News -->
+            <section class="section">
+                <div class="section-header">
+                    <h2 class="section-title">اخبار اقتصادی</h2>
+                    <a asp-action="Archive" asp-route-category="اقتصاد" class="view-all">مشاهده همه</a>
+                </div>
+
+                <div class="grid-news">
+                    @foreach (var i in Model.Economy)
+                    {
+                        <article class="news-list-item">
+                            <a asp-action="singleNews" asp-route-id="@i.Id">
+                                <div class="news-list-img">
+                                    <img src="~/images/content/@i.Image" alt="خبر">
+                                </div>
+                                <div class="news-list-content">
+                                    <h3 class="news-list-title">
+                                        <a asp-action="singleNews" asp-route-id="@i.Id">@i.Title</a>
+                                </h3>
+                                <div class="news-list-meta">
+                                    <span>@i.DatePublished.toShamsi()</span>
+                                </div>
+                            </div>
+                            </a>
+                        </article>
+                    }
+
+                </div>
+            </section>
+        </div>
+
+        <div class="content-right">
+            <!-- Popular News -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">پربازدیدترین‌ها</h3>
+                @foreach (var i in Model.mostviewed)
+                {
+                    <div class="popular-item">
+                        <div class="popular-number">*</div>
+                        <div class="popular-content">
+                            <h4 class="popular-title">
+                                <a asp-action="singleNews" asp-route-id="@i.Id">@i.Title</a>
+                            </h4>
+                            <div class="popular-meta">
+                                <span>@i.DatePublished.toShamsi() </span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Tags -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">برچسب‌ها</h3>
+
+                <div class="tags-container">
+                    @foreach (var i in Model.tags.Take(12))
+                    {
+                        <a asp-action="SingleNews" asp-route-id="@i." class="tag">@i.Name</a>
+                    }
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">خبرنامه</h3>
+                <p>برای دریافت آخرین اخبار، ایمیل خود را وارد کنید.</p>
+
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="ایمیل خود را وارد کنید">
+                    <button type="submit" class="newsletter-btn">عضویت</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

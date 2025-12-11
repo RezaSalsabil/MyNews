@@ -1,0 +1,126 @@
+﻿@model (List<TblNews> News, List<TblNews> MV)
+@{
+    ViewData["Title"] = "Archive";
+}
+
+<!-- Main Content -->
+<div class="container">
+    <div class="main-content">
+        <div class="content-left">
+            <!-- Archive News -->
+            <section class="section">
+                <div class="section-header">
+                    @if (ViewData["category"] != null)
+                    {
+                        <h2 class="section-title"> آخرین اخبار @ViewData["category"]</h2>
+
+                    }
+                    else if (ViewData["Keyword"] != null)
+                    {
+                        <h2 class="section-title"> آخرین اخبار @ViewData["Keyword"]</h2>
+
+                    }
+                    else
+                    {
+                        <h2 class="section-title"> آخرین اخبار</h2>
+                    }
+                </div>
+                <div class="latestx-news">
+                    @foreach (var i in Model.News)
+                    {
+                        @await Component.InvokeAsync("NewsBlock", i);
+                    }
+                </div>
+            </section>
+
+            <div class="center">
+                <div class="pagination">
+                    @for (int i = 1; i<= Convert.ToInt32(ViewData["pageCount"]); i++) 
+                    {
+                        if (ViewData["category"] != null)
+                        {
+                            if (i == Convert.ToInt32(ViewData["activePage"]))
+                            {
+                                <a class="active">@i</a>
+
+                            }
+                            else
+                            {
+                                <a asp-action="Archive" asp-route-pageNumber="@i" asp-route-category="@ViewData["category"]">@i</a>
+
+                            }
+                        }
+                        else
+                        {
+                            if (i == Convert.ToInt32(ViewData["activePage"]))
+                            {
+                                <a class="active">@i</a>
+
+                            }
+                            else
+                            {
+                                <a asp-action="Archive" asp-route-pageNumber="@i">@i</a>
+
+                            }
+                        }
+                        
+
+                    }
+                </div>
+        </div>
+</div>
+        <div class="content-right">
+            <!-- Popular News -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">پربازدیدترین‌ها</h3>
+
+                @foreach (var i in Model.MV)
+                {
+                    <div class="popular-item">
+                        <div class="popular-number">*</div>
+                        <div class="popular-content">
+                            <h4 class="popular-title">
+                                <a asp-action="singleNews" asp-route-id="@i.Id">@i.Title</a>
+                            </h4>
+                            <div class="popular-meta">
+                                <span>@i.DatePublished.toShamsi() </span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Tags -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">برچسب‌ها</h3>
+
+                <div class="tags-container">
+                    <a href="#" class="tag">کرونا</a>
+                    <a href="#" class="tag">انتخابات</a>
+                    <a href="#" class="tag">بورس</a>
+                    <a href="#" class="tag">دلار</a>
+                    <a href="#" class="tag">واکسن</a>
+                    <a href="#" class="tag">مسکن</a>
+                    <a href="#" class="tag">خودرو</a>
+                    <a href="#" class="tag">فوتبال</a>
+                    <a href="#" class="tag">یارانه</a>
+                    <a href="#" class="tag">آلودگی هوا</a>
+                    <a href="#" class="tag">سفر</a>
+                    <a href="#" class="tag">کنکور</a>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">خبرنامه</h3>
+                <p>برای دریافت آخرین اخبار، ایمیل خود را وارد کنید.</p>
+
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="ایمیل خود را وارد کنید">
+                    <button type="submit" class="newsletter-btn">عضویت</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,251 @@
+﻿@model (TblNews news, List<TblNews> relatedNews, List<TblNews> mostviewed, List<TblNews> latestNews, List<TblComment> Comments, List<TblKeyword> tags)
+@{
+    ViewData["Title"] = "singleNews";
+}
+
+
+<!-- Breadcrumb -->
+<div class="container">
+    <div class="breadcrumb">
+        <div class="breadcrumb-item">
+            <a asp-action="Index" class="breadcrumb-link">صفحه اصلی</a>
+        </div>
+        <div class="breadcrumb-item">
+            
+            <a class="breadcrumb-link">@Model.news.Category.Name</a>
+            
+        </div>
+@*         <div class="breadcrumb-item">
+            <a href="#" class="breadcrumb-link">همکاری‌های اقتصادی</a>
+        </div> *@
+    </div>
+</div>
+
+<!-- Article Content -->
+<div class="container">
+    <div class="article-container">
+        <main class="article-main">
+            <header class="article-header">
+                <span class="article-category">@Model.news.Category.Name</span>
+                <h1 class="article-title">@Model.news.Title</h1>
+                <div class="article-meta">
+                    <div class="article-author">
+                        <div class="author-avatar">
+                            <img src="~/images/user.jpg" alt="نویسنده">
+                        </div>
+                        <span>محمد احمدی</span>
+                    </div>
+                    <div class="article-date">
+                        <i class="fas fa-calendar"></i>
+                        <span>@Model.news.DatePublished.toShamsi()</span>
+                    </div>
+                    <div class="article-views">
+                        <i class="fas fa-eye"></i>
+                        <span>@Model.news.ViewCount</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="article-content">
+                <img src="~/images/content/@Model.news.Image" alt="همکاری اقتصادی" class="article-featured-img">
+
+                <div class="article-text">
+                    @Model.news.Body
+                </div>
+
+                <div class="article-tags">
+
+                    @foreach (var i in Model.news.Keyword)
+                    {
+                        <a asp-action="Archive" asp-route-keyword="@i.Name" class="article-tag">@i.Name</a>
+                        
+                    }
+
+                </div>
+
+                <div class="article-share">
+                    <span class="share-title">اشتراک‌گذاری:</span>
+                    <br />
+                    <br />
+                    <div class="share-links">
+                        <a href="#" class="share-link"><img src="~/images/facebook.jpg" /></a>
+                        <a href="#" class="share-link"><img src="~/images/dribbble.jpg" /></a>
+                        <a href="#" class="share-link"><img src="~/images/twitter.jpg" /> </a>
+                        <a href="#" class="share-link"><img src="~/images/instagarm.jpg" /></a>
+
+                    </div>
+                </div>
+
+                <div class="author-box">
+                    <div class="author-box-avatar">
+                        <img src="~/images/user.jpg" alt="نویسنده">
+                    </div>
+                    <div class="author-box-info">
+                        <h3 class="author-box-name">محمد احمدی</h3>
+                        <p class="author-box-bio">
+                            محمد احمدی، روزنامه‌نگار و تحلیلگر اقتصادی با بیش از ۱۵ سال سابقه در حوزه اقتصاد بین‌الملل و روابط تجاری ایران با کشورهای منطقه است. او دارای مدرک کارشناسی ارشد اقتصاد از دانشگاه تهران می‌باشد.
+                        </p>
+                        <div class="author-box-social">
+                            <a href="#" class="author-social-link"><img src="~/images/facebook.jpg" /></a>
+                            <a href="#" class="author-social-link"><img src="~/images/dribbble.jpg" /></a>
+                            <a href="#" class="author-social-link"><img src="~/images/twitter.jpg" /> </a>
+                            <a href="#" class="author-social-link"><img src="~/images/instagarm.jpg" /></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Articles -->
+                <div class="related-articles">
+                    <h3 class="related-title">مطالب مرتبط</h3>
+                    <div class="related-grid">
+                    @foreach ( var i in Model.relatedNews)
+                    {
+                            <article class="related-card">
+                                <div class="related-img">
+                                    <img src="~/images/content/@i.Image" alt="خبر مرتبط">
+                                </div>
+                                <div class="related-content">
+                                    <span class="related-category">@i.Category.Name</span>
+                                    <h3 class="related-card-title">
+                                        <a asp-action="singleNews" asp-route-id="@i.Id">@i.Title</a>
+                                    </h3>
+                                    <div class="related-meta">
+                                        <span>@i.DatePublished.toShamsi()</span>
+                                    </div>
+                                </div>
+                            </article>
+                    }
+                    </div>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h3 class="comments-title">نظرات (@Model.Comments.Count)</h3>
+
+                    <div class="comment-form">
+                        <form>
+                            <div class="form-group">
+                                <label for="comment" class="form-label">نظر شما</label>
+                                <textarea id="comment" class="form-control" placeholder="نظر خود را بنویسید..."></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">نام</label>
+                                    <input type="text" id="name" class="form-control" placeholder="نام خود را وارد کنید">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="form-label">ایمیل</label>
+                                    <input type="email" id="email" class="form-control" placeholder="ایمیل خود را وارد کنید">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn">ارسال نظر</button>
+                        </form >
+                    </div>
+
+                    <div class="comment-list">
+
+                        @foreach (var i in Model.Comments)
+                        {
+                            <div class="comment">
+                                <div class="comment-avatar">
+                                    <img src="~/images/user.jpg" alt="کاربر">
+                                </div>
+                                <div class="comment-body">
+                                    <div class="comment-meta">
+                                        <span class="comment-author">@i.CommenterName</span>
+                                        <span class="comment-date">@i.DateSubmited.toShamsi()</span>
+                                    </div>
+                                    <div class="comment-text">
+                                        <p>@i.Body</p>
+                                    </div>
+                                    <a href="#" class="comment-reply">پاسخ</a>
+                                </div>
+                            </div>
+                            
+                        }
+                    </div>
+                </div>
+        </main>
+
+        <aside class="sidebar">
+            <!-- Popular News -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">پربازدیدترین‌ها</h3>
+                @foreach (var i in Model.mostviewed)
+                {
+                        <a asp-action="singleNews" asp-route-id="@i.Id">
+                    <div class="popular-item">
+                        <div class="popular-number">*</div>
+                        <div class="popular-content">
+                            <h4 class="popular-title">
+                                <p>@i.Title</p>
+                            </h4>
+                            <div class="popular-meta">
+                                <span>@i.DatePublished.toShamsi()</span>
+                            </div>
+                        </div>
+                    </div>
+                        </a>
+                }
+            </div>
+
+            <!-- Tags -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">برچسب‌ها</h3>
+
+                <div class="tags-container">
+
+                    @foreach (var i in Model.tags.Take(12))
+                    {
+                        <a asp-action="SingleNews" asp-route-id="@i." class="tag">@i.Name</a>
+                    }
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">خبرنامه</h3>
+                <p>برای دریافت آخرین اخبار، ایمیل خود را وارد کنید.</p>
+
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="ایمیل خود را وارد کنید">
+                    <button type="submit" class="newsletter-btn">عضویت</button>
+                </form>
+            </div>
+
+            <!-- Latest Articles -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">آخرین مقالات</h3>
+
+
+                @foreach (var i in Model.latestNews)
+                {
+                <div class="popular-item">
+                    <div class="popular-content">
+                        <a asp-action="singleNews" asp-route-id="@i.Id">
+                        <h4 class="popular-title">
+                            <p>@i.Title</p>
+                        </h4>
+                        <div class="popular-meta">
+                            <span>@i.DatePublished.toShamsi()</span>
+                        </div>
+                            </a>
+                    </div>
+                </div>
+                }
+            </div>
+        </aside>
+    </div>
+</div>
+<script src="js/SingleMode1.js"></script>
+<script src="js/ScrollerMeno.js"></script>
+<script src="js/MenoSubset.js"></script>
+<script src="js/Shared_menu.js"></script>
+<script src="js/buttonDynamic.js"></script>
+<script>
+    document.getElementById('headerStyle').setAttribute('href', '/css/SingleMode1.css')
+
+</script>

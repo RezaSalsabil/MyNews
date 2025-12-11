@@ -1,0 +1,10 @@
+﻿@model TblNews
+
+<div>
+    <img class="Image_Meno" src="~/images/content/@Model.Image" />
+
+</div>
+<div class="Da_Meno">
+    <a class="a_MenoImageTitle">@Model.Title</a>
+    <a class="a_MenoImageParagraf">@Model.Body.Shorten(10)</a>
+</div>

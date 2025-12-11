@@ -1,0 +1,17 @@
+﻿@* @model (List<TblNews> Politic, List<TblNews> Economy)
+
+<article class="news-list-item">
+    <a asp-action="singleNews" asp-route-id="@i.Id">
+        <div class="news-list-img">
+            <img src="~/images/content/@i.Image" alt="خبر">
+        </div>
+        <div class="news-list-content">
+            <h3 class="news-list-title">
+                <a asp-action="singleNews" asp-route-id="@i.Id">@i.Title</a>
+            </h3>
+            <div class="news-list-meta">
+                <span>@i.DatePublished.toShamsi()</span>
+            </div>
+        </div>
+    </a>
+</article> *@

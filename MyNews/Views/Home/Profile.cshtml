@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewData["Title"] = "Profile";
+}
+
+
+
+<!-- Login Container -->
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h1 class="login-title">به خبرگزاری اتفاق خوش آمدید</h1>
+            <p class="login-subtitle">برای دسترسی به امکانات ویژه، وارد حساب کاربری خود شوید</p>
+        </div>
+
+        <div class="login-tabs">
+            <div class="login-tab active" data-tab="login">ورود</div>
+            <div class="login-tab" data-tab="register">ثبت‌نام</div>
+            <div class="login-tab" data-tab="forgot">فراموشی رمز عبور</div>
+        </div>
+
+        <div class="login-body">
+            <!-- Login Form -->
+            <div class="login-form active" id="login-form">
+                <div class="form-group">
+                    <label for="login-name" class="form-label">شماره تماس یا نام کاربری</label>
+                    <input type="text" id="login-name" class="form-control"  
+                           placeholder="شماره تماس یا نام کاربری خود را وارد کنید" as>
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password" class="form-label">رمز عبور</label>
+                    <input type="password" id="login-password" class="form-control"
+                           placeholder="رمز عبور خود را وارد کنید">
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" id="remember-me" class="form-check-input">
+                    <label for="remember-me" class="form-check-label">مرا به خاطر بسپار</label>
+                </div>
+@*                 <a type="submit" class="btn" asp-controller="User" asp-action="Login" asp-route-username="admin" asp-route-password="admin">ورود به حساب کاربری</a> *@
+                <a class="btn" id="login-button" onclick="Login()">ورود به حساب کاربری</a>
+
+                <div class="form-divider">یا ورود از طریق</div>
+
+                <div class="social-login">
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-google"></i>
+                        گوگل
+                    </a>
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-telegram"></i>
+                        تلگرام
+                    </a>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div  class="login-form " id="register-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="register-name" class="form-label"> نام و نام خانوادگی</label>
+                        <input type="text" id="register-name" class="form-control"
+                               placeholder="نام خود را وارد کنید">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="register-phoneNumber" class="form-label">شماره تماس</label>
+                    <input type="text" id="register-phoneNumber" class="form-control"
+                           placeholder="شماره تماس خود را وارد کنید">
+                    <small class="form-text">ما هرگز شماره تماس شما را با دیگران به اشتراک نمی‌گذاریم.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="register-userName" class="form-label">نام کاربری</label>
+                    <input type="text" id="register-userName" class="form-control"
+                           placeholder="نام کاربری خود را وارد کنید">
+                </div>
+
+                <div class="form-group">
+                    <label for="register-password" class="form-label">رمز عبور</label>
+                    <input type="password" id="register-password" class="form-control"
+                           placeholder="رمز عبور خود را وارد کنید">
+
+                    <div class="password-strength strength-weak">
+                        <div class="strength-meter">
+                            <div class="strength-meter-fill"></div>
+                        </div>
+                        <div class="strength-text">قدرت رمز عبور: ضعیف</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="register-confirm-password" class="form-label">تکرار رمز عبور</label>
+                    <input type="password" id="register-confirm-password" class="form-control"
+                           placeholder="رمز عبور خود را مجدداً وارد کنید">
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" id="terms" class="form-check-input">
+                    <label for="terms" class="form-check-label">
+                        <a href="#">قوانین و مقررات</a> سایت را می‌پذیرم
+                    </label>
+                </div>
+
+                <a class="btn" onclick="Register()">ثبت‌نام</a>
+            </div>
+
+            <!-- Forgot Password Form -->
+            <div class="login-form" id="forgot-form">
+                <div class="form-group">
+                    <label for="forgot-email" class="form-label">ایمیل</label>
+                    <input type="email" id="forgot-email" class="form-control" placeholder="ایمیل خود را وارد کنید">
+                    <small class="form-text">لینک بازیابی رمز عبور به ایمیل شما ارسال خواهد شد.</small>
+                </div>
+
+                <button type="submit" class="btn">بازیابی رمز عبور</button>
+
+                <div class="form-divider"></div>
+
+                <p class="text-center" style="margin-bottom: 1rem;">رمز عبور خود را به یاد آوردید؟</p>
+                <button type="button" class="btn btn-outline back-to-login">بازگشت به صفحه ورود</button>
+            </div>
+        </div>
+
+        <div class="login-footer">
+            <p>
+                با ورود یا ثبت‌نام در سایت، شما <a href="#">قوانین و مقررات</a> استفاده از سرویس‌های سایت و <a href="#">قوانین حریم خصوصی</a> آن را می‌پذیرید.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/LoginMode1.js"></script>
+<script src="~/js/ScrollerMeno.js"></script>
+<script src="~/js/MenoSubset.js"></script>
+<script src="~/js/Shared_menu.js"></script>
+<script src="~/js/jquery-3.7.1.min.js"></script>
+<script src="~/js/login.js"></script>
+<script>
+    document.getElementById('headerStyle').setAttribute('href', '/css/LoginMode1.css');
+
+
+    function Login() {
+        var username = document.getElementById('login-name').value;
+        var password = document.getElementById('login-password').value;
+        var dto = {
+            UserName: username,
+            Password: password
+        };
+        $.ajax({
+            url: 'https://localhost:7260/User/Login',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(dto),
+            success: (data) => {
+                $("body").html(data);
+
+
+            },
+            error: (err) => {
+                console.log(err)
+            }
+        })
+
+    };
+
+
+    function Register()
+    {
+        var dto = {
+            name: document.getElementById("register-name").value,
+            password: document.getElementById("register-password").value,
+            phoneNumber: document.getElementById("register-phoneNumber").value,
+            userName: document.getElementById("register-userName").value
+        }
+        console.log(JSON.stringify(dto))
+        $.ajax({
+            url: 'https://localhost:7260/User/Register',
+            method:'POST',
+            async: false,
+            contentType:'application/json',
+            data: JSON.stringify(dto),
+            success: () =>
+            {
+                console.log(1)
+            },
+            error: (err) => { 
+                console.log(err)
+            }
+        })
+
+    }
+</script>
+        

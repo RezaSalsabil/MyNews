@@ -1,0 +1,212 @@
+﻿
+@{
+    ViewData["Title"] = "contactUs";
+}
+
+<!-- Contact Section -->
+<section class="contact-section">
+    <div class="container">
+        <h2 class="section-title">راه‌های ارتباطی</h2>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3 class="info-title">آدرس دفتر مرکزی</h3>
+                        <p class="info-text">تهران، خیابان ولیعصر، بالاتر از میدان ونک، ساختمان خبر، طبقه ۵، واحد ۵۰۳</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3 class="info-title">شماره تماس</h3>
+                        <p class="info-text">
+                            تلفن: <a href="tel:+982188776655">۰۲۱-0000000</a><br>
+                            فکس: <a href="tel:+982188776656">۰۲۱-0000000</a><br>
+                            پشتیبانی: <a href="tel:+982188776657">۰۲۱-0000000</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3 class="info-title">ایمیل</h3>
+                        <p class="info-text">
+                            اطلاعات عمومی: <a href="mailto:info@newsportal.ir">info@newsporrttal.ir</a><br>
+                            پشتیبانی: <a href="mailto:support@newsportal.ir">support@newsporrttal.ir</a><br>
+                            همکاری با ما: <a href="mailto:jobs@newsportal.ir">jobs@newsporrttal.ir</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3 class="info-title">ساعات کاری</h3>
+                        <div class="working-hours">
+                            <div class="hours-item">
+                                <span class="hours-day">شنبه تا چهارشنبه</span>
+                                <span class="hours-time">۸:۰۰ الی ۱۷:۰۰</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="hours-day">پنج‌شنبه</span>
+                                <span class="hours-time">۸:۰۰ الی ۱۳:۰۰</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="hours-day">جمعه</span>
+                                <span class="hours-closed">تعطیل</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3 class="info-title">شبکه‌های اجتماعی</h3>
+                        <p class="info-text">ما را در شبکه‌های اجتماعی دنبال کنید:</p>
+                        <div class="social-links-contact">
+                            <a href="#" class="footer-social-link"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <h3 class="info-title" style="margin-bottom: 1.5rem;">فرم تماس با ما</h3>
+
+                <div class="alert alert-success" id="form-success">
+                    پیام شما با موفقیت ارسال شد. در اسرع وقت با شما تماس خواهیم گرفت.
+                </div>
+
+                <div class="alert alert-danger" id="form-error">
+                    متأسفانه در ارسال پیام شما مشکلی پیش آمده است. لطفاً دوباره تلاش کنید.
+                </div>
+
+                <form id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="form-label">نام و نام خانوادگی</label>
+                            <input type="text" id="name" class="form-control" placeholder="نام و نام خانوادگی خود را وارد کنید">
+                            <div class="invalid-feedback">لطفاً نام و نام خانوادگی خود را وارد کنید</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">ایمیل</label>
+                            <input type="email" id="email" class="form-control" placeholder="ایمیل خود را وارد کنید">
+                            <div class="invalid-feedback">لطفاً یک ایمیل معتبر وارد کنید</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone" class="form-label">شماره تماس</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="شماره تماس خود را وارد کنید">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">موضوع</label>
+                            <select id="subject" class="form-control">
+                                <option value="">انتخاب کنید</option>
+                                <option value="general">سؤال عمومی</option>
+                                <option value="support">پشتیبانی</option>
+                                <option value="feedback">بازخورد و پیشنهاد</option>
+                                <option value="cooperation">همکاری با ما</option>
+                                <option value="advertising">تبلیغات</option>
+                                <option value="other">سایر موارد</option>
+                            </select>
+                            <div class="invalid-feedback">لطفاً یک موضوع انتخاب کنید</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">پیام</label>
+                        <textarea id="message" class="form-control" placeholder="پیام خود را بنویسید..."></textarea>
+                        <div class="invalid-feedback">لطفاً پیام خود را وارد کنید</div>
+                    </div>
+
+                    <button type="submit" class="btn">ارسال پیام</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section">
+            <h2 class="section-title">موقعیت ما روی نقشه</h2>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.2554256326016!2d51.41046491525882!3d35.7153472801863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0728f1486b29%3A0x3c5e8a78d4323baf!2sVanak%20Square%2C%20Tehran%2C%20Iran!5e0!3m2!1sen!2s!4v1646579345218!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="section-title">سؤالات متداول</h2>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">چگونه می‌توانم در سایت ثبت‌نام کنم؟</div>
+                    <div class="faq-answer">
+                        <p>برای ثبت‌نام در سایت، کافی است روی گزینه «ورود» در بالای صفحه کلیک کنید و سپس گزینه «ثبت‌نام» را انتخاب نمایید. با وارد کردن اطلاعات خواسته شده، می‌توانید حساب کاربری خود را ایجاد کنید.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">چگونه می‌توانم خبرنامه سایت را دریافت کنم؟</div>
+                    <div class="faq-answer">
+                        <p>برای دریافت خبرنامه سایت، می‌توانید در بخش «خبرنامه» که در صفحه اصلی و یا در ستون کناری سایت قرار دارد، ایمیل خود را وارد کرده و روی دکمه «عضویت» کلیک کنید. پس از آن، آخرین اخبار و مطالب سایت به صورت روزانه یا هفتگی برای شما ارسال خواهد شد.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">چگونه می‌توانم مطلب یا اتفاق را به شما ارسال کنم؟</div>
+                    <div class="faq-answer">
+                        <p>برای ارسال مطلب یا خبر، می‌توانید از طریق ایمیل <a href="mailto:news@newsporrttal.ir">news@newsporrttal.ir</a> با ما در تماس باشید. همچنین می‌توانید از طریق فرم تماس با ما در همین صفحه، مطلب خود را برای ما ارسال کنید. پس از بررسی توسط تیم تحریریه، مطلب شما با ذکر نام منبع در سایت منتشر خواهد شد.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">آیا امکان درج تبلیغات در سایت وجود دارد؟</div>
+                    <div class="faq-answer">
+                        <p>بله، امکان درج تبلیغات در بخش‌های مختلف سایت وجود دارد. برای کسب اطلاعات بیشتر در مورد تعرفه‌ها و نحوه همکاری، می‌توانید با ایمیل <a href="mailto:ads@newsporrttal.ir">ads@newsporrttal.ir</a> تماس بگیرید یا با شماره تلفن ۰۲۱-0000000 تماس حاصل فرمایید.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">چگونه می‌توانم نظر خود را درباره یک خبر ثبت کنم؟</div>
+                    <div class="faq-answer">
+                        <p>برای ثبت نظر درباره یک خبر، ابتدا باید در سایت ثبت‌نام کرده و وارد حساب کاربری خود شوید. سپس به صفحه خبر مورد نظر رفته و در انتهای صفحه، در بخش نظرات، می‌توانید دیدگاه خود را ثبت کنید. نظر شما پس از تأیید توسط مدیران سایت، نمایش داده خواهد شد.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="js/ContactUsMode1.js"></script>
+<script src="js/ScrollerMeno.js"></script>
+<script src="js/MenoSubset.js"></script>
+<script src="js/Shared_menu.js"></script>
+<script src="js/buttonDynamic.js"></script>
+<script>
+    document.getElementById('headerStyle').setAttribute('href', '/css/ContactUsMode1.css')
+</script>

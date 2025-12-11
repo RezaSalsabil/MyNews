@@ -1,0 +1,5 @@
+﻿@model List<TblCategory>
+@foreach (var i in Model)
+{
+    <li class="li_subset"><a asp-action="Archive" asp-route-category="@i.Name">@i.Name</a></li>
+}

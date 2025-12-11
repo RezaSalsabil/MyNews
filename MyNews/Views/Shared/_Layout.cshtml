@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html dir="rtl" lang="fa" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خبرگزاری اتفاق | Persian News Portal</title>
+    <link id="headerStyle" rel="stylesheet" href="" />
+    <link  rel="stylesheet" href="~/css/MainMode1.css" />
+    <link rel="stylesheet" href="~/Font/fontawesome-free-6.7.2-web/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/Animate.min.css" />
+    <link rel="stylesheet" href="~/css/MenoSubset.css" />
+    <link rel="stylesheet" href="~/css/Shared_menu.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    
+
+    <style>
+.center {
+  text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #255ccb;
+  color: white;
+  border: 1px solid #255ccb;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+
+
+</style>
+
+</head>
+<body>
+
+    @{
+
+    }
+
+    <div id="mySidenav" class="sidenav" style="width:0px;">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a asp-action="index" class="nav-link">صفحه اصلی</a>
+        <a class="nav-link NavSide SignCategory">دسته ی اول<i class="fa fa-caret-down Icon_category_moblie"></i></a>
+        <div class="Nav_subset animate__animated animate__fadeInUp">
+            @await Component.InvokeAsync("MenuBar")
+
+        </div>
+
+
+        <a class="nav-link NavSide SignCategory">دمو های ثبت نام<i class="fa fa-caret-down Icon_category_moblie"></i></a>
+        <div class="Nav_subset animate__animated animate__fadeInUp">
+            <a href="LoginMode1.html" class="nav-link NavSide">دموی ثبت نام نسخه 1</a>
+            <a href="LoginMode2.html" class="nav-link NavSide">دموی ثبت نام نسخه 2</a>
+        </div>
+
+        <a class="nav-link NavSide SignCategory">دمو های تماس با ما<i class="fa fa-caret-down Icon_category_moblie"></i></a>
+        <div class="Nav_subset animate__animated animate__fadeInUp">
+            <a href="ContactUsMode1.html" class="nav-link NavSide">دموی تماس با ما نسخه 1</a>
+            <a href="ContactUsMode2.html" class="nav-link NavSide">دموی تماس با ما نسخه 2</a>
+            <a href="ContactUsMode3.html" class="nav-link NavSide">دموی تماس با ما نسخه 3</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <a href="Mode1.html" class="logo"> خبرگزاری <span style="margin-right: 8px;"> اتفاق </span></a>
+
+
+
+
+                <div class="header-date">@DateTime.Now.toShamsi()</div>
+
+                <div class="header-actions responsiv_Desctop">
+                    <a asp-controller="Home" asp-action="Profile">ورود | ثبت نام </a>
+                    <a asp-controller="Home" asp-action="contactUs">تماس با ما</a>
+
+
+                    
+                </div>
+ 
+
+
+                
+
+            </div>
+
+
+            <nav class="main-nav">
+                <div class="container">
+                    <div class="nav-container">
+                        <button class="scroll_right btn_Dynamic" aria-label="اسکرول به راست">&#8250;</button>
+
+                        <span class="sidebarMenoButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                        <ul class="nav-menu nav_menud WidthDynamic">
+
+
+
+                            <li class="nav-item has_MegaMeno">
+                                <a asp-controller="Home" asp-action="index" class="nav-link">صفحه اصلی</a>
+                            </li>
+
+                            <li class="nav-item has_MegaMeno">
+                                <a asp-controller="Home" asp-action="Archive" class="nav-link">آرشیو</a>
+                                
+                            </li>
+                            <li class="nav-item has-submenu" onclick="showSubmenu(item)">
+                                <a class="nav-link">دسته اول<i class="fa fa-caret-down Icon_category"></i></a>
+                                <div class="submenuOrginal">
+                                    <div class="placeholder"></div>
+                                    <div class="DImage_Meno">
+                                        @await Component.InvokeAsync("HeadNews")
+                                    </div>
+
+                                    <ul class="submenu">
+                                        @await Component.InvokeAsync("MenuBar")                            
+                                    </ul>
+                                </div>
+                            </li>
+
+
+
+
+                            <li class="nav-item has_MegaMeno">
+                                
+                            </li>
+                        </ul>
+                        <button class="scroll_left btn_Dynamic" aria-label="اسکرول به چپ">&#8249;</button>
+                        <div class="header-actions responsiv_Mobile">
+                            <a href="Login.html">ورود</a>
+                            <a href="Login.html">ثبت‌نام</a>
+                            <a href="ContactUs.html">تماس با ما</a>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+
+    @RenderBody()
+ 
+
+
+        <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo">خبرگزاری اتفاق</a>
+                    <p class="footer-desc">
+                        خبرگزاری اتفاق، پیشرو در ارائه اخبار دقیق و به‌روز از ایران و جهان. هدف ما اطلاع‌رسانی صحیح و سریع به مخاطبان است.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="footer-social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">دسترسی سریع</h3>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Home" asp-action="Index">صفحه اصلی</a></li>
+                        <li><a asp-controller="Home" asp-action="Archive" asp-route-category="سیاسی">اخبار سیاسی</a></li>
+                        <li><a asp-controller="Home" asp-action="Archive" asp-route-category="اقتصاد">اخبار اقتصادی</a></li>
+                        <li><a asp-controller="Home" asp-action="Archive" asp-route-category="ورزشی">اخبار ورزشی</a></li>
+                        <li><a asp-controller="Home" asp-action="Archive" asp-route-category="فرهنگی">اخبار فرهنگی</a></li>
+                        <li><a asp-controller="Home" asp-action="Archive" asp-route-category="بین الملل">اخبار بین‌الملل</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">خدمات ما</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">درباره ما</a></li>
+                        <li><a href="#">تماس با ما</a></li>
+                        <li><a href="#">همکاری با ما</a></li>
+                        <li><a href="#">تبلیغات</a></li>
+                        <li><a href="#">حریم خصوصی</a></li>
+                        <li><a href="#">قوانین سایت</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">اطلاعات تماس</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>تهران، خیابان ولیعصر، ساختمان خبر، طبقه ۵</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>۰۲۱-۸۸۷۷۶۶۵۵</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@newsportal.ir</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>تمامی حقوق این سایت متعلق به خبرگزاری اتفاق می‌باشد. &copy; ۱۴۰۴</p>
+            </div>
+        </div>
+    </footer>
+    <script src="~/js/MainMode1.js"></script>
+    <script src="~/js/ScrollerMeno.js"></script>
+    <script src="~/js/MenoSubset.js"></script>
+    <script src="~/js/Shared_menu.js"></script>
+    <script src="~/js/buttonDynamic.js"></script>
+    
+</body>
+</html>
